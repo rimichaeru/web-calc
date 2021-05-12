@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.calc {
+  display: grid;
+  width: 40vh;
+  height: 60vh;
+  grid-template-areas: "view view view view view" "seven eight nine del clr" "four five six mult divi" "one two three add subt" "dot dot zero ans equals";
+}
+.calc__view {
+  grid-area: view;
+}
+.calc .del {
+  grid-area: del;
+}
+.calc .clr {
+  grid-area: clr;
+}
+.calc .zero {
+  grid-area: zero;
+}
+.calc .i {
+  grid-area: one;
+}
+.calc .ii {
+  grid-area: two;
+}
+.calc .iii {
+  grid-area: three;
+}
+.calc .iv {
+  grid-area: four;
+}
+.calc .v {
+  grid-area: five;
+}
+.calc .vi {
+  grid-area: six;
+}
+.calc .vii {
+  grid-area: seven;
+}
+.calc .viii {
+  grid-area: eight;
+}
+.calc .ix {
+  grid-area: nine;
+}
+.calc .mult {
+  grid-area: mult;
+}
+.calc .divi {
+  grid-area: divi;
+}
+.calc .add {
+  grid-area: add;
+}
+.calc .subt {
+  grid-area: subt;
+}
+.calc .dot {
+  grid-area: dot;
+}
+.calc .equals {
+  grid-area: equals;
+}
+.calc .ans {
+  grid-area: ans;
+}

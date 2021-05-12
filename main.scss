@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+
+.calc {
+  display: grid;
+  width: 40vh;
+  height: 60vh;
+  grid-template-areas: "view view view view view" "seven eight nine del clr" "four five six mult divi" "one two three add subt" "dot dot zero ans equals";
+
+  &__view {
+    grid-area: view;
+  }
+
+  .del {
+    grid-area: del;
+    // background-color: khaki;
+  }
+
+  .clr {
+    grid-area: clr;
+    // background-color: khaki;
+  }
+
+  .zero {
+    grid-area: zero;
+    // background-color: khaki;
+  }
+
+  .i {
+    grid-area: one;
+    // background-color: khaki;
+  }
+
+  .ii {
+    grid-area: two;
+    // background-color: khaki;
+  }
+
+  .iii {
+    grid-area: three;
+    // background-color: khaki;
+  }
+
+  .iv {
+    grid-area: four;
+    // background-color: khaki;
+  }
+
+  .v {
+    grid-area: five;
+    // background-color: khaki;
+  }
+
+  .vi {
+    grid-area: six;
+    // background-color: khaki;
+  }
+
+  .vii {
+    grid-area: seven;
+    // background-color: khaki;
+  }
+
+  .viii {
+    grid-area: eight;
+    // background-color: khaki;
+  }
+
+  .ix {
+    grid-area: nine;
+    // background-color: khaki;
+  }
+
+  .mult {
+    grid-area: mult;
+    // background-color: khaki;
+  }
+
+  .divi {
+    grid-area: divi;
+    // background-color: khaki;
+  }
+
+  .add {
+    grid-area: add;
+    // background-color: khaki;
+  }
+
+  .subt {
+    grid-area: subt;
+    // background-color: khaki;
+  }
+
+  .dot {
+    grid-area: dot;
+    // background-color: khaki;
+  }
+
+  .equals {
+    grid-area: equals;
+    // background-color: khaki;
+  }
+
+  .ans {
+    grid-area: ans;
+    // background-color: khaki;
+  }
+
+}
