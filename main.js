@@ -17,9 +17,10 @@ const zero_clear = (clr=false) => {
       if (newOp == true) {
         view.value = "";
       }
-    }
+    }                                     
   } else {
     view.value = "0";
+    newOp = true;
   }
 }
 
@@ -35,9 +36,9 @@ const non_digit_replacer = (subt=false) => {
   }
   
   if (subt == true) {
-    regEx = /[\d.-]/g
+    regEx = /[\d.)-]/g
   } else {
-    regEx = /[\d.]/g
+    regEx = /[\d).]/g
   }
 
   if (regEx.test(view.value[view.value.length-1]) == false) {
@@ -48,14 +49,17 @@ const non_digit_replacer = (subt=false) => {
 const compute = () => {
   try {
     const answer = eval(view.value);
-    // fix unneccessary repeating zeros
-    // let splitAnswer = `${answer}`.split(".");
-    // const regEx = /0{4,}/g
-    // if (regEx.test(splitAnswer[1])) {
-    //   answer = answer.toFixed(5)
-    // }
-  
-    ansView.value = view.value + ": " + answer;
+
+    if (view.value.length > 10) {
+      ansView.value = view.value.slice(0,10) + "...: " + answer;
+    } else {
+      ansView.value = view.value + ": " + answer;
+    }
+
+    // truncate if too long
+    if (ansView.value.length > 32) {
+      ansView.value = ansView.value.slice(0,32) + "...";
+    }
     view.value = answer;
     ans = answer;
     newOp = true;
@@ -64,19 +68,6 @@ const compute = () => {
     view.value = "Syntax Error"
     newOp = true;
   }
-  // remove whitespaces and create array
-  // const compArr = view.value.replace(/\s/g, "").split("");
-  // let result;
-  // let tempNum;
-  // [ "1", "+", "1" ]
-  // compArr.forEach((unit) => {
-  //   regEx = /\d/
-  //   if (regEx.test(unit)) {
-  //     tempNum = unit;
-  //   } else {
-  //     tempNum
-  //   }
-  // })
 }
 
 const delete_input = () => {
@@ -92,6 +83,20 @@ const insert_ans = () => {
     view.value += ans;
   }
   start_op()
+}
+
+const bracket_left = () => {
+  zero_clear();
+  view.value += "(";
+  start_op()
+}
+
+const bracket_right = () => {
+  if (view.value != 0) {
+    zero_clear();
+    view.value += ")";
+    start_op()
+  }
 }
 
 const input_one = () => {
@@ -153,22 +158,37 @@ const input_dot = () => {
 const op_mult = () => {
   if (view.value != "0") {
     non_digit_replacer();
-    view.value += "*";
-    newOp = false;
+    if (view.value != "") {
+      view.value += "*";
+      newOp = false;
+    } else {
+      zero_clear(true);
+      newOp = true;
+    }
   }
 }
 const op_divi = () => {
   if (view.value != "0") {
     non_digit_replacer();
-    view.value += "/";
-    newOp = false;
+    if (view.value != "") {
+      view.value += "/";
+      newOp = false;
+    } else {
+      zero_clear(true);
+      newOp = true;
+    }
   }
 }
 const op_add = () => {
   if (view.value != "0") {
     non_digit_replacer();
-    view.value += "+";
-    newOp = false;
+    if (view.value != "") {
+      view.value += "+";
+      newOp = false;
+    } else {
+      zero_clear(true);
+      newOp = true;
+    }
   }
 }
 const op_subt = () => {
@@ -179,8 +199,13 @@ const op_subt = () => {
     newOp = false;
   } else {
     non_digit_replacer();
-    view.value += "-";
-    newOp = false;
+    if (view.value != "") {
+      view.value += "-";
+      newOp = false;
+    } else {
+      zero_clear(true);
+      newOp = true;
+    }
   }
   
 }
