@@ -1,5 +1,6 @@
 // ans shows if there was a previous computation
-let ans = "";
+let ans = [0];
+let ansIndex = 0;
 let newOp = true;
 
 const ansView = document.querySelector(".calc__display__ansView");
@@ -36,22 +37,23 @@ const non_digit_replacer = (subt=false) => {
   }
   
   if (subt == true) {
-    regEx = /[\d.)-]/g
+    regEx = /[\d)-]/g
   } else {
-    regEx = /[\d).]/g
+    regEx = /[\d)]/g
   }
-
+  
   if (regEx.test(view.value[view.value.length-1]) == false) {
     view.value = view.value.slice(0, -1);
   }
 }
+
 
 const compute = () => {
   try {
     const answer = eval(view.value);
 
     if (view.value.length > 10) {
-      ansView.value = view.value.slice(0,10) + "...: " + answer;
+      ansView.value = view.value.slice(0,10) + "... : " + answer;
     } else {
       ansView.value = view.value + ": " + answer;
     }
@@ -61,7 +63,8 @@ const compute = () => {
       ansView.value = ansView.value.slice(0,32) + "...";
     }
     view.value = answer;
-    ans = answer;
+    ans.push(answer);
+    ansIndex += 1;
     newOp = true;
     
   } catch (error) {
@@ -77,12 +80,40 @@ const delete_input = () => {
   }
 }
 
+const ans_up = () => {
+  ansIndex -= 1;
+  if (ansIndex < 0) {
+    ansIndex = 0;
+  }
+  
+  ansView.value = `[${ansIndex}] Previous Calc: ` + ans[ansIndex];
+
+  if (ansView.value.length > 32) {
+    ansView.value = ansView.value.slice(0,32) + "...";
+  }  
+}
+
+const ans_down = () => {
+  ansIndex += 1;
+  if (ansIndex > ans.length - 1) {
+    ansIndex = ans.length - 1;
+  }
+  
+  ansView.value = `[${ansIndex}] Previous Calc: ` + ans[ansIndex];
+
+  if (ansView.value.length > 32) {
+    ansView.value = ansView.value.slice(0,32) + "...";
+  }
+}
+
 const insert_ans = () => {
   zero_clear();
-  if (ans != "" || view.value != ans) {
-    view.value += ans;
+
+  if (view.value != "0" || view.value != "" || eval(view.value) != eval(ans[ansIndex])) {
+    view.value += ans[ansIndex];
+    start_op()
   }
-  start_op()
+
 }
 
 const bracket_left = () => {
@@ -150,6 +181,7 @@ const input_zero = () => {
   start_op()
 }
 const input_dot = () => {
+  non_digit_replacer();
   zero_clear()
   view.value += ".";
   start_op()

@@ -16,7 +16,7 @@ body {
   display: grid;
   width: 40vh;
   height: 60vh;
-  grid-template-areas: "disp disp disp disp disp" "bracketLeft bracketRight temp temp temp" "seven eight nine del clr" "four five six mult divi" "one two three add subt" "dot dot zero ans equals";
+  grid-template-areas: "disp disp disp disp disp" "bracketLeft bracketRight temp ansUp ansDown" "seven eight nine del clr" "four five six mult divi" "one two three add subt" "dot dot zero ans equals";
 
   &__display {
     grid-area: disp;
@@ -36,6 +36,16 @@ body {
 
   .temp {
     grid-area: temp;
+    // background-color: khaki;
+  }
+
+  .ansUp {
+    grid-area: ansUp;
+    // background-color: khaki;
+  }
+
+  .ansDown {
+    grid-area: ansDown;
     // background-color: khaki;
   }
 

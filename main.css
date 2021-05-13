@@ -15,7 +15,7 @@ body {
   display: grid;
   width: 40vh;
   height: 60vh;
-  grid-template-areas: "disp disp disp disp disp" "bracketLeft bracketRight temp temp temp" "seven eight nine del clr" "four five six mult divi" "one two three add subt" "dot dot zero ans equals";
+  grid-template-areas: "disp disp disp disp disp" "bracketLeft bracketRight temp ansUp ansDown" "seven eight nine del clr" "four five six mult divi" "one two three add subt" "dot dot zero ans equals";
 }
 .calc__display {
   grid-area: disp;
@@ -32,6 +32,12 @@ body {
 }
 .calc .temp {
   grid-area: temp;
+}
+.calc .ansUp {
+  grid-area: ansUp;
+}
+.calc .ansDown {
+  grid-area: ansDown;
 }
 .calc .del {
   grid-area: del;
