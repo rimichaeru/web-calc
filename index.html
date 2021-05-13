@@ -9,27 +9,33 @@
 </head>
 <body>
   <div class="calc">
-    <input class="calc__view" type="text" readonly>
-    <button class="calc__button del">Del</button>
-    <button class="calc__button clr">Clr</button>
-    <button class="calc__button ix">9</button>
-    <button class="calc__button viii">8</button>
-    <button class="calc__button vii">7</button>
-    <button class="calc__button vi">6</button>
-    <button class="calc__button v">5</button>
-    <button class="calc__button iv">4</button>
-    <button class="calc__button iii">3</button>
-    <button class="calc__button ii">2</button>
-    <button class="calc__button i">1</button>
-    <button class="calc__button zero">0</button>
-    <button class="calc__button mult">*</button>
-    <button class="calc__button divi">/</button>
-    <button class="calc__button add">+</button>
-    <button class="calc__button subt">-</button>
-    <button class="calc__button dot">.</button>
-    <button class="calc__button equals">=</button>
-    <button class="calc__button ans">Ans</button>
-
+    <div class="calc__display">
+      <input class="calc__display__ansView" type="text">
+      <input class="calc__display__view" type="text">
+    </div>
+    <button class="calc__button del" onclick="delete_input()">Del</button>
+    <button class="calc__button clr" onclick="zero_clear(true)">Clr</button>
+    <button class="calc__button ix" onclick="input_nine()">9</button>
+    <button class="calc__button viii" onclick="input_eight()">8</button>
+    <button class="calc__button vii" onclick="input_seven()">7</button>
+    <button class="calc__button vi" onclick="input_six()">6</button>
+    <button class="calc__button v" onclick="input_five()">5</button>
+    <button class="calc__button iv" onclick="input_four()">4</button>
+    <button class="calc__button iii" onclick="input_three()">3</button>
+    <button class="calc__button ii" onclick="input_two()">2</button>
+    <button class="calc__button i" onclick="input_one();">1</button>
+    <button class="calc__button zero" onclick="input_zero()">0</button>
+    <button class="calc__button dot" onclick="input_dot()">.</button>
+    <button class="calc__button mult" onclick="op_mult()">*</button>
+    <button class="calc__button divi" onclick="op_divi()">/</button>
+    <button class="calc__button add" onclick="op_add()">+</button>
+    <button class="calc__button subt" onclick="op_subt()">-</button>
+    <button class="calc__button equals" onclick="compute()">=</button>
+    <button class="calc__button ans" onclick="insert_ans()">Ans</button>
+    <button class="calc__button bracketLeft" onclick="bracket_left()">(</button>
+    <button class="calc__button bracketRight" onclick="bracket_right()">)</button>
+    <button class="calc__button temp"></button>
   </div>
+  <script src="main.js" async defer></script>
 </body>
 </html>

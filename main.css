@@ -15,10 +15,23 @@ body {
   display: grid;
   width: 40vh;
   height: 60vh;
-  grid-template-areas: "view view view view view" "seven eight nine del clr" "four five six mult divi" "one two three add subt" "dot dot zero ans equals";
+  grid-template-areas: "disp disp disp disp disp" "bracketLeft bracketRight temp temp temp" "seven eight nine del clr" "four five six mult divi" "one two three add subt" "dot dot zero ans equals";
 }
-.calc__view {
-  grid-area: view;
+.calc__display {
+  grid-area: disp;
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+}
+.calc__display__ansView {
+  font-size: 2vh;
+  text-align: right;
+}
+.calc__display__view {
+  font-size: 4vh;
+  text-align: right;
+}
+.calc .temp {
+  grid-area: temp;
 }
 .calc .del {
   grid-area: del;
@@ -76,4 +89,10 @@ body {
 }
 .calc .ans {
   grid-area: ans;
+}
+.calc .bracketLeft {
+  grid-area: bracketLeft;
+}
+.calc .bracketRight {
+  grid-area: bracketRight;
 }

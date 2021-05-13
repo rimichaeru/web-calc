@@ -16,10 +16,27 @@ body {
   display: grid;
   width: 40vh;
   height: 60vh;
-  grid-template-areas: "view view view view view" "seven eight nine del clr" "four five six mult divi" "one two three add subt" "dot dot zero ans equals";
+  grid-template-areas: "disp disp disp disp disp" "bracketLeft bracketRight temp temp temp" "seven eight nine del clr" "four five six mult divi" "one two three add subt" "dot dot zero ans equals";
 
-  &__view {
-    grid-area: view;
+  &__display {
+    grid-area: disp;
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+
+    &__ansView {
+      font-size: 2vh;
+      text-align: right;
+    }
+
+    &__view {
+      font-size: 4vh;
+      text-align: right;
+    }
+  }
+
+  .temp {
+    grid-area: temp;
+    // background-color: khaki;
   }
 
   .del {
@@ -114,6 +131,16 @@ body {
 
   .ans {
     grid-area: ans;
+    // background-color: khaki;
+  }
+
+  .bracketLeft {
+    grid-area: bracketLeft;
+    // background-color: khaki;
+  }
+
+  .bracketRight {
+    grid-area: bracketRight;
     // background-color: khaki;
   }
 
