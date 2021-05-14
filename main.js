@@ -63,30 +63,48 @@ const compute = () => {
     // loop on self
     const resolveLeftRight = (unitArr=viewArr) => {
       for (unit of unitArr) {
+        console.log("unitArr is:", unitArr);
         console.log("Unit is:", unit);
 
-        if (unit =="*") {
+        // test for only numbers
+        if (/^[\d.]+$/.test(unitArr.join(""))) {
+          return unitArr;
+        }
+
+        if (unit == "*") {
           const unitIndex = unitArr.indexOf(unit);
 
           // get start index of immediate left number only
           let leftNum = [];
+          let leftIndex;
           for (let i = unitIndex-1; i >= 0; i--) {
             if (/[\d.()]/.test(unitArr[i])) {
               leftNum.unshift(unitArr[i])
+              if (i == 0) {
+                leftIndex = i;
+              }
             } else {
+              leftIndex = i;
               break;
             }
           }
           // get end index of immediate right number only
           let rightNum = [];
+          let rightIndex;
           for (let i = unitIndex+1; i < unitArr.length; i++) {
             if (/[\d.()]/.test(unitArr[i])) {
               rightNum.push(unitArr[i])
+              if (i == unitArr.length-1) {
+                rightIndex = i+1;
+              }
             } else {
+              rightIndex = i;
               break;
             }
           }
-          
+
+          console.log("left, right index", leftIndex, rightIndex)
+
           console.log("leftNum: ", leftNum);
           console.log("rightNum: ", rightNum);
           // attempt to operate on left and right
@@ -94,20 +112,13 @@ const compute = () => {
           const result = Number(leftNum.join("")) * Number(rightNum.join(""));
           console.log("result: ", result);
 
-          if (isNaN(result)) {
-            // if it fails, create two recursive paths which resolve left and right separately
-            // but don't include what you're calculating right now
-            let left = resolveLeftRight(unitArr=leftUnits)
-            let right = resolveLeftRight(unitArr=rightUnits)
-            return [Number(left.join("")) * Number(right.join(""))];
-          } else {
-            return [result];
-          }
-        } else {
-          console.log("Unit is not an operator: ", unit);
-          if (unitArr.indexOf(unit) == unitArr.length-1) {
-            return unitArr;
-          }
+          // now replace calculated part of array and join to original array
+          newLeftArr = unitArr.slice(0, leftIndex)
+          newRightArr = unitArr.slice(rightIndex)
+
+          unitArr = newLeftArr.concat([`${result}`]).concat(newRightArr);
+          
+          console.log("end unitArr is:", unitArr);
         }
       }
 
