@@ -1,3 +1,5 @@
+// Calculator without using eval()
+
 // ans shows if there was a previous computation
 let ans = [0];
 let ansIndex = 0;
@@ -50,7 +52,81 @@ const non_digit_replacer = (subt=false) => {
 
 const compute = () => {
   try {
-    const answer = eval(view.value);
+    // eval version
+    // const answer = eval(view.value);
+
+
+
+    const viewArr = view.value.split("");
+
+    // HANDLE REGULAR FUNCTIONS
+    // loop on self
+    const resolveLeftRight = (unitArr=viewArr) => {
+      for (unit of unitArr) {
+        console.log("Unit is:", unit);
+        if (unit == "+") {
+          let leftUnits = unitArr.slice(0, unitArr.indexOf(unit));
+          let rightUnits = unitArr.slice(unitArr.indexOf(unit)+1, unitArr.length);
+
+          console.log("leftUnits: ", leftUnits);
+          console.log("rightUnits: ", rightUnits);
+          // attempt to operate on left and right
+
+          const result = Number(leftUnits.join("")) + Number(rightUnits.join(""));
+          console.log("result: ", result);
+
+          if (isNaN(result)) {
+            // if it fails, create two recursive paths which resolve left and right separately
+            let left = resolveLeftRight(unitArr=leftUnits) // = ["1"]
+            let right = resolveLeftRight(unitArr=rightUnits)
+            return [Number(left.join("")) + Number(right.join(""))];
+          } else {
+            return [result];
+          }
+        
+        } else {
+          console.log("Unit is not an operator: ", unit);
+          if (unitArr.indexOf(unit) == unitArr.length-1) {
+            return unitArr;
+          }
+        }
+      }
+    }
+    // initial call
+    const answer = resolveLeftRight().join("");
+
+
+    // // handle brackets first
+    // let openBracketIndex;
+    // for (let i = 0; i < viewArr.length; i++) {
+    //   regEx = /[(]/;
+    //   if (regEx.test(viewArr[i])) {
+    //     openBracketIndex.push(viewArr.IndexOf(viewArr[i]));
+    //   }
+    // }
+
+    // let closeBracketIndex;
+    // for (let i = 0; i < viewArr.length; i++) {
+    //   regEx = /[)]/;
+    //   if (regEx.test(viewArr[i])) {
+    //     closeBracketIndex.push(viewArr.IndexOf(viewArr[i]));
+    //   }
+    // }
+
+    // if (openBracketIndex.length != closeBracketIndex.length) {
+    //   view.value = "Syntax Error";
+    //   return; // break out of code here
+    // }
+
+    // for (let i = 0; i < openBracketIndex.length; i++) {
+    //   // evaluate each bracket on at a time
+    //   // does not include brackets
+    //   const singleBracketArr = viewArr.slice(openBracketIndex[i+1], closeBracketIndex[i]);
+    //   let nums = singleBracketArr.join("").split(/[+/*]/);
+ 
+    // }
+
+
 
     if (view.value.length > 10) {
       ansView.value = view.value.slice(0,10) + "... : " + answer;
