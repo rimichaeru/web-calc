@@ -64,6 +64,54 @@ const compute = () => {
     const resolveLeftRight = (unitArr=viewArr) => {
       for (unit of unitArr) {
         console.log("Unit is:", unit);
+
+        if (unit =="*") {
+          const unitIndex = unitArr.indexOf(unit);
+
+          // get start index of immediate left number only
+          let leftNum = [];
+          for (let i = unitIndex-1; i >= 0; i--) {
+            if (/[\d.()]/.test(unitArr[i])) {
+              leftNum.unshift(unitArr[i])
+            } else {
+              break;
+            }
+          }
+          // get end index of immediate right number only
+          let rightNum = [];
+          for (let i = unitIndex+1; i < unitArr.length; i++) {
+            if (/[\d.()]/.test(unitArr[i])) {
+              rightNum.push(unitArr[i])
+            } else {
+              break;
+            }
+          }
+          
+          console.log("leftNum: ", leftNum);
+          console.log("rightNum: ", rightNum);
+          // attempt to operate on left and right
+
+          const result = Number(leftNum.join("")) * Number(rightNum.join(""));
+          console.log("result: ", result);
+
+          if (isNaN(result)) {
+            // if it fails, create two recursive paths which resolve left and right separately
+            // but don't include what you're calculating right now
+            let left = resolveLeftRight(unitArr=leftUnits)
+            let right = resolveLeftRight(unitArr=rightUnits)
+            return [Number(left.join("")) * Number(right.join(""))];
+          } else {
+            return [result];
+          }
+        } else {
+          console.log("Unit is not an operator: ", unit);
+          if (unitArr.indexOf(unit) == unitArr.length-1) {
+            return unitArr;
+          }
+        }
+      }
+
+      for (unit of unitArr) {
         if (unit == "+") {
           let leftUnits = unitArr.slice(0, unitArr.indexOf(unit));
           let rightUnits = unitArr.slice(unitArr.indexOf(unit)+1, unitArr.length);
