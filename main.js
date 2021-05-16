@@ -55,8 +55,6 @@ const compute = () => {
     // eval version
     // const answer = eval(view.value);
 
-
-
     const viewArr = view.value.split("");
 
     // HANDLE REGULAR FUNCTIONS
@@ -88,7 +86,7 @@ const compute = () => {
               }
               if (unitArr[i-1] == "-") {
                 leftNum.unshift("-");
-                isMinus = i;
+                isMinus = i-2;
                 leftIndex = i;
               }
             } else {
@@ -123,16 +121,27 @@ const compute = () => {
             result = Number(leftNum.join("")) / Number(rightNum.join(""));
           }
           
+          result = `${result}`;
           if (result[0] == "-") {
-            result = result.split("")
+            result = result.split("");
+            if (result[0] == "-" && result[1] == "-") {
+              result = result.slice(1);
+            }
           }
+          console.log("result: ", result);
 
           // now replace calculated part of array and join to original array
           
           newLeftArr = unitArr.slice(isMinus, leftIndex)
           newRightArr = unitArr.slice(rightIndex)
 
-          unitArr = newLeftArr.concat([`${result}`]).concat(newRightArr);
+          console.log("leftArr, rightArr:", newLeftArr, newRightArr);
+
+          if (typeof result == "string") {
+            unitArr = newLeftArr.concat([`${result}`]).concat(newRightArr);
+          } else {
+            unitArr = newLeftArr.concat(result).concat(newRightArr);
+          }
 
           console.log("new arr,", unitArr);
         }
@@ -164,7 +173,7 @@ const compute = () => {
               }
               if (unitArr[i-1] == "-") {
                 leftNum.unshift("-");
-                isMinus = i;
+                isMinus = i-2;
                 leftIndex = i;
               }
             } else {
@@ -191,6 +200,14 @@ const compute = () => {
 
           const result = Number(leftNum.join("")) + Number(rightNum.join(""));
 
+          result = `${result}`;
+          if (result[0] == "-") {
+            result = result.split("");
+            if (result[0] == "-" && result[1] == "-") {
+              result = result.slice(1);
+            }
+          }
+
           // now replace calculated part of array and join to original array
           newLeftArr = unitArr.slice(isMinus, leftIndex)
           newRightArr = unitArr.slice(rightIndex)
@@ -209,15 +226,16 @@ const compute = () => {
             return unitArr;
           }
         }
-
+        
         if (unit == "-") {
           const unitIndex = unitArr.indexOf(unit);
           let isMinus = 0;
-
+          
           // get start index of immediate left number only
           let leftNum = [];
           let leftIndex;
-          for (let i = unitIndex-1; i >= 0; i--) {
+          for (let i = unitIndex; i >= 0; i--) {
+            console.log("unitArr, i: ", unitArr, i);
             if (/[\d.()]/.test(unitArr[i])) {
               leftNum.unshift(unitArr[i])
               if (i == 0) {
@@ -225,11 +243,14 @@ const compute = () => {
               }
               if (unitArr[i-1] == "-") {
                 leftNum.unshift("-");
-                isMinus = i;
+                isMinus = i-2;
                 leftIndex = i;
+                console.log("unitArr, isMinus, leftIndex", unitArr, isMinus, leftIndex);
               }
             } else {
+              leftNum.unshift(unitArr[i])
               leftIndex = i+1;
+              console.log("going else, unitIndex, leftIndex:", unitIndex, i);
               break;
             }
           }
@@ -243,13 +264,23 @@ const compute = () => {
                 rightIndex = i+1;
               }
             } else {
+              console.log("right unit:", unitIndex);
               rightIndex = i;
               break;
             }
           }
-          // attempt to operate on left and right
 
+          // attempt to operate on left and right
+          console.log("left, right Num", leftNum, rightNum);
           const result = Number(leftNum.join("")) - Number(rightNum.join(""));
+
+          result = `${result}`;
+          if (result[0] == "-") {
+            result = result.split("");
+            if (result[0] == "-" && result[1] == "-") {
+              result = result.slice(1);
+            }
+          }
 
           // now replace calculated part of array and join to original array
           newLeftArr = unitArr.slice(isMinus, leftIndex)
