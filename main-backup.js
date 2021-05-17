@@ -71,7 +71,6 @@ const compute = () => {
           }
         }
 
-      
         if (unit == "*" || unit == "/") {
           const unitIndex = unitArr.indexOf(unit);
           let isMinus = 0;
@@ -128,10 +127,6 @@ const compute = () => {
             if (result[0] == "-" && result[1] == "-") {
               result = result.slice(1);
             }
-          }
-
-          if (typeof result == "string") {
-            result = result.split("")
           }
           console.log("result: ", result);
 
@@ -246,104 +241,8 @@ const compute = () => {
           }
         }
 
-        let negativeCount = 0;
-        for (let i = 0; i < unitArr.length; i++) {
-          if (unitArr[i] == "-") {
-            negativeCount++;
-          }
-        }
-
-        if (negativeCount > 1 && unitArr[0] == "-" && unit == "-") {
-          console.log("DOUBLE MINUS");
-          console.log(unitArr);
-          
-          let minusCopyArr = unitArr.slice(1);
-          console.log("MinusCopy is", minusCopyArr);
-          console.log("original unit arr is", unitArr);
-
-          const unitIndex = minusCopyArr.indexOf(unit);
-          console.log("index of unit", unitIndex);
-
-
-          // get start index of immediate left number only
-          let isMinus = 0;
-          let leftNum = [];
-          let leftIndex;
-          for (let i = unitIndex-1; i >= 0; i--) {
-            console.log("unitIndex:", unitIndex);
-            if (/[\d.()]/.test(minusCopyArr[i])) {
-              leftNum.unshift(minusCopyArr[i])
-              if (i == 0) {
-                console.log("going i==0");
-                leftIndex = i;
-              }
-              if (minusCopyArr[i-1] == "-") {
-                console.log("going minus");
-                leftNum.unshift("-");
-                isMinus = i-2;
-                leftIndex = i;
-              }
-            } else {
-              console.log("going else");W
-              leftIndex = i+1;
-              break;
-            }
-          }
-
-          // get end index of immediate right number only
-          let rightNum = [];
-          let rightIndex;
-          for (let i = unitIndex+1; i < minusCopyArr.length; i++) {
-            if (/[\d.()]/.test(minusCopyArr[i])) {
-              rightNum.push(minusCopyArr[i])
-              if (i == minusCopyArr.length-1) {
-                rightIndex = i+1;
-              }
-            } else {
-              rightIndex = i;
-              break;
-            }
-          }
-
-          leftNum.unshift("-")
-          result = Number(leftNum.join("")) - Number(rightNum.join(""));
-          
-          console.log("MINUS COPY leftNum, rightNum", leftNum, rightNum);
-          console.log("MINUS COPY RESULTS", result);
-
-          result = `${result}`;
-          if (result[0] == "-") {
-            result = result.split("");
-            if (result[0] == "-" && result[1] == "-") {
-              result = result.slice(1);
-            }
-          }
-
-          if (typeof result == "string") {
-            result = result.split("")
-          }
-          console.log("result: ", result);
-
-          // now replace calculated part of array and join to original array
-          newLeftArr = minusCopyArr.slice(isMinus, leftIndex);
-          newRightArr = minusCopyArr.slice(rightIndex);
-
-          console.log("leftArr, rightArr:", newLeftArr, newRightArr);
-
-          if (typeof result == "string") {
-            unitArr = newLeftArr.concat([`${result}`]).concat(newRightArr);
-          } else {
-            unitArr = newLeftArr.concat(result).concat(newRightArr);
-          }
-
-          console.log("new arr,", unitArr);
-
-
-        } else if (unit == "+" || unit == "-") {
-
+        if (unit == "+" || unit == "-") {
           const unitIndex = unitArr.indexOf(unit);
-          
-          console.log("index of unit", unitIndex);
           let isMinus = 0;
 
           // get start index of immediate left number only
@@ -369,7 +268,6 @@ const compute = () => {
               break;
             }
           }
-
           // get end index of immediate right number only
           let rightNum = [];
           let rightIndex;
@@ -402,10 +300,6 @@ const compute = () => {
             if (result[0] == "-" && result[1] == "-") {
               result = result.slice(1);
             }
-          }
-
-          if (typeof result == "string") {
-            result = result.split("")
           }
           console.log("result: ", result);
 
