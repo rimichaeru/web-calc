@@ -2,13 +2,18 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  max-height: 400px;
+  max-width: 280px;
 }
 
 body {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  height: 80vh;
+  max-height: 400px;
+  max-width: 280px;
+  left: 0;
+  top: 0;
 }
 
 .button {
@@ -31,14 +36,16 @@ body {
 }
 
 .calc {
+  background: rgba(219, 242, 255, 0.541);
   display: grid;
   width: 280px;
   height: 400px;
   grid-template-areas: "disp disp disp disp disp" "temp temp temp ansUp ansDown" "seven eight nine del clr" "four five six mult divi" "one two three add subt" "zero zero dot ans equals";
-  border: 1px solid rgba(0, 0, 0, 0.39);
-  border-top-left-radius: 14px;
-  border-top-right-radius: 14px;
-  box-shadow: 1px 2px rgba(56, 56, 56, 0.377);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  box-shadow: 1px 2px rgba(163, 171, 172, 0.404);
   padding: 5px;
 }
 .calc__display {
@@ -50,8 +57,8 @@ body {
 .calc__display__ansView {
   font-size: 11px;
   text-align: right;
-  border-top-left-radius: 14px;
-  border-top-right-radius: 14px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   border-radius: 4px;
   border: 0;
   background: none;
@@ -152,4 +159,157 @@ body {
 }
 .calc .bracketRight {
   grid-area: bracketRight;
+}
+
+#background-wrap {
+  position: fixed;
+  max-height: 440px;
+  max-width: 280px;
+  z-index: -1;
+}
+
+/* KEYFRAMES */
+@-webkit-keyframes animateBubble {
+  0% {
+    margin-top: -420px;
+  }
+  100% {
+    margin-top: 0%;
+  }
+}
+@-moz-keyframes animateBubble {
+  0% {
+    margin-top: -420px;
+  }
+  100% {
+    margin-top: 0%;
+  }
+}
+@keyframes animateBubble {
+  0% {
+    margin-top: -420px;
+  }
+  100% {
+    margin-top: 0%;
+  }
+}
+@-webkit-keyframes sideWays {
+  0% {
+    margin-left: 10px;
+  }
+  100% {
+    margin-left: 70px;
+  }
+}
+@-moz-keyframes sideWays {
+  0% {
+    margin-left: 10px;
+  }
+  100% {
+    margin-left: 70px;
+  }
+}
+@keyframes sideWays {
+  0% {
+    margin-left: 10px;
+  }
+  100% {
+    margin-left: 70px;
+  }
+}
+/* ANIMATIONS */
+.x1 {
+  -webkit-animation: animateBubble 14s linear infinite, sideWays 5s ease-in-out infinite alternate;
+  -moz-animation: animateBubble 14s linear infinite, sideWays 5s ease-in-out infinite alternate;
+  animation: animateBubble 14s linear infinite, sideWays 5s ease-in-out infinite alternate;
+  left: -200%;
+  top: -30%;
+  -webkit-transform: scale(0.2);
+  -moz-transform: scale(0.2);
+  transform: scale(0.2);
+}
+
+.x2 {
+  -webkit-animation: animateBubble 30s linear infinite, sideWays 5s ease-in-out infinite alternate;
+  -moz-animation: animateBubble 30s linear infinite, sideWays 5s ease-in-out infinite alternate;
+  animation: animateBubble 30s linear infinite, sideWays 5s ease-in-out infinite alternate;
+  left: 5%;
+  top: -30%;
+  -webkit-transform: scale(0.5);
+  -moz-transform: scale(0.5);
+  transform: scale(0.5);
+}
+
+.x3 {
+  -webkit-animation: animateBubble 50s linear infinite, sideWays 6s ease-in-out infinite alternate;
+  -moz-animation: animateBubble 50s linear infinite, sideWays 6s ease-in-out infinite alternate;
+  animation: animateBubble 50s linear infinite, sideWays 6s ease-in-out infinite alternate;
+  left: 10%;
+  top: -10%;
+  -webkit-transform: scale(0.7);
+  -moz-transform: scale(0.7);
+  transform: scale(0.7);
+}
+
+.x8 {
+  -webkit-animation: animateBubble 20s linear infinite, sideWays 4s ease-in-out infinite alternate;
+  -moz-animation: animateBubble 20s linear infinite, sideWays 4s ease-in-out infinite alternate;
+  animation: animateBubble 20s linear infinite, sideWays 4s ease-in-out infinite alternate;
+  left: 20%;
+  top: 0%;
+  -webkit-transform: scale(0.3);
+  -moz-transform: scale(0.3);
+  transform: scale(0.3);
+}
+
+.x9 {
+  -webkit-animation: animateBubble 36s linear infinite, sideWays 5s ease-in-out infinite alternate;
+  -moz-animation: animateBubble 36s linear infinite, sideWays 5s ease-in-out infinite alternate;
+  animation: animateBubble 36s linear infinite, sideWays 5s ease-in-out infinite alternate;
+  left: 200%;
+  top: 0%;
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  transform: scale(0.8);
+}
+
+/* OBJECTS */
+.bubble {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2), inset 0px 10px 30px 5px white;
+  -moz-box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2), inset 0px 10px 30px 5px white;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2), inset 0px 10px 30px 5px white;
+  height: 200px;
+  position: absolute;
+  width: 200px;
+}
+
+.bubble:after {
+  background: -moz-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 70%);
+  /* FF3.6+ */
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(255, 255, 255, 0.5)), color-stop(70%, rgba(255, 255, 255, 0)));
+  /* Chrome,Safari4+ */
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 70%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 70%);
+  /* Opera 12+ */
+  background: -ms-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 70%);
+  /* IE10+ */
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 70%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#80ffffff", endColorstr="#00ffffff",GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-box-shadow: inset 0 20px 30px rgba(255, 255, 255, 0.3);
+  -moz-box-shadow: inset 0 20px 30px rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 20px 30px rgba(255, 255, 255, 0.3);
+  content: "";
+  height: 180px;
+  left: 10px;
+  position: absolute;
+  width: 180px;
 }
