@@ -6,7 +6,7 @@ let ansIndex = 0;
 let newOp = true;
 
 const ansView = document.querySelector(".calc__display__ansView");
-ansView.value = "0";
+ansView.value = "Numpad enabled / ANS = input prev. answers";
 
 const view = document.querySelector(".calc__display__view");
 view.value = "0";
@@ -650,3 +650,92 @@ const op_subt = () => {
   }
   
 }
+
+
+// detect keyboard input
+const calc = document.querySelector(".calc");
+calc.addEventListener("keydown", (event) => {
+  if (event.defaultPrevented) {
+    return;
+  }
+
+  switch (event.key) {
+    case "9":
+      input_nine();
+      break;
+    case "8":
+      input_eight();
+      break;
+    case "7":
+      input_seven();
+      break;
+    case "6":
+      input_six();
+      break;
+    case "5":
+      input_five();
+      break;
+    case "4":
+      input_four();
+      break;
+    case "3":
+      input_three();
+      break;
+    case "2":
+      input_two();
+      break;
+    case "1":
+      input_one();
+      break;
+    case "0":
+      input_zero();
+      break;
+    case "Multiply":
+      op_mult();
+      break;
+    case "Divide":
+      op_divi();
+      break;
+    case "Add":
+      op_add();
+      break;
+    case "Subtract":
+      op_subt();
+      break;
+
+    default:
+      break;
+  }
+
+  switch (event.keyCode) {
+    case 110:
+      input_dot();
+      break;
+    case 190:
+      input_dot();
+      break;
+    case 111:
+      op_divi();
+      break;
+    case 191:
+      op_divi();
+      break;
+    case 106:
+      op_mult();
+      break;
+    case 107:
+      op_add();
+      break;
+    case 109:
+      op_subt();
+      break;
+    case 13:
+      compute();
+      break;
+    case 8:
+      delete_input();
+      break;
+    default:
+      break;
+  }
+})

@@ -11,39 +11,86 @@ body {
   height: 80vh;
 }
 
+.button {
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  border: 0;
+  background: none;
+  box-shadow: 2px 2px rgba(211, 211, 211, 0.418);
+}
+.button:hover {
+  background-color: rgba(173, 216, 230, 0.5);
+}
+
+.blank {
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+
 .calc {
   display: grid;
-  width: 40vh;
-  height: 60vh;
-  grid-template-areas: "disp disp disp disp disp" "bracketLeft bracketRight temp ansUp ansDown" "seven eight nine del clr" "four five six mult divi" "one two three add subt" "dot dot zero ans equals";
+  width: 280px;
+  height: 400px;
+  grid-template-areas: "disp disp disp disp disp" "temp temp temp ansUp ansDown" "seven eight nine del clr" "four five six mult divi" "one two three add subt" "zero zero dot ans equals";
+  border: 1px solid rgba(0, 0, 0, 0.39);
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  box-shadow: 1px 2px rgba(56, 56, 56, 0.377);
+  padding: 5px;
 }
 .calc__display {
   grid-area: disp;
   display: grid;
   grid-template-rows: 1fr 3fr;
+  margin-bottom: 6px;
 }
 .calc__display__ansView {
-  font-size: 2vh;
+  font-size: 11px;
   text-align: right;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  border-radius: 4px;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  padding: 0 8px;
+  color: rgba(85, 85, 85, 0.795);
+  font-style: italic;
 }
 .calc__display__view {
-  font-size: 4vh;
+  font-size: 24px;
   text-align: right;
+  border-radius: 4px;
+  border: 0;
+  background: none;
+  box-shadow: 1px 2px rgba(65, 65, 65, 0.226);
+  padding: 0 4px;
 }
 .calc .temp {
   grid-area: temp;
 }
 .calc .ansUp {
   grid-area: ansUp;
+  color: #4949ff;
+  font-size: 12px;
 }
 .calc .ansDown {
   grid-area: ansDown;
+  color: #4949ff;
+  font-size: 12px;
 }
 .calc .del {
   grid-area: del;
+  color: red;
+  font-size: 14px;
 }
 .calc .clr {
   grid-area: clr;
+  color: red;
+  font-size: 14px;
 }
 .calc .zero {
   grid-area: zero;
@@ -92,9 +139,13 @@ body {
 }
 .calc .equals {
   grid-area: equals;
+  color: green;
+  font-size: 14px;
 }
 .calc .ans {
   grid-area: ans;
+  color: green;
+  font-size: 14px;
 }
 .calc .bracketLeft {
   grid-area: bracketLeft;
