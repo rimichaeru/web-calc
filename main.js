@@ -6,7 +6,7 @@ let ansIndex = 0;
 let newOp = true;
 
 const ansView = document.querySelector(".calc__display__ansView");
-ansView.value = "Numpad enabled / ANS = input prev. answers";
+ansView.value = "Numpad Enabled / ANS = Input prev. answers";
 
 const view = document.querySelector(".calc__display__view");
 view.value = "0";
@@ -341,14 +341,15 @@ const compute = () => {
 
         } else if (unit == "+" || unit == "-") {
 
-          const unitIndex = unitArr.indexOf(unit);
+          let unitIndex = unitArr.indexOf(unit);
           
           console.log("index of unit", unitIndex);
-          let isMinus = 0;
+          let isMinus = 0; 
 
           // get start index of immediate left number only
           let leftNum = [];
           let leftIndex;
+
           for (let i = unitIndex-1; i >= 0; i--) {
             console.log("unitIndex:", unitIndex);
             if (/[\d.()]/.test(unitArr[i])) {
