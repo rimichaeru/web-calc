@@ -85,11 +85,6 @@ const compute = () => {
               if (i == 0) {
                 leftIndex = i;
               }
-              if (unitArr[i-1] == "-") {
-                leftNum.unshift("-");
-                isMinus = i-2;
-                leftIndex = i;
-              }
             } else {
               leftIndex = i+1;
               break;
@@ -138,6 +133,10 @@ const compute = () => {
           // now replace calculated part of array and join to original array
           newLeftArr = unitArr.slice(isMinus, leftIndex)
           newRightArr = unitArr.slice(rightIndex)
+
+          if (newLeftArr[newLeftArr.length-1] == "-" && result[0] == "-") {
+            result = result.slice(1);
+          }
 
           console.log("leftArr, rightArr:", newLeftArr, newRightArr);
 
@@ -236,11 +235,11 @@ const compute = () => {
       // }
 
       for (unit of unitArr) {
-        // test for only numbers
+        // final returns standalone number
         if (/^[\d.]+$/.test(unitArr.join(""))) {
           return unitArr;
         } else {
-          // checks for a minus number
+          // final returns a minus number
           if (/^-/.test(unitArr.join("")) && /^[\d.]+$/.test(unitArr.join("").slice(1))) {
             return unitArr;
           }
@@ -343,7 +342,7 @@ const compute = () => {
 
           let unitIndex = unitArr.indexOf(unit);
           
-          console.log("index of unit", unitIndex);
+          console.log("plus/min index of unit", unitIndex);
           let isMinus = 0; 
 
           // get start index of immediate left number only
@@ -355,7 +354,7 @@ const compute = () => {
             if (/[\d.()]/.test(unitArr[i])) {
               leftNum.unshift(unitArr[i])
               if (i == 0) {
-                console.log("going i==0");
+                console.log("going i==0, very start of array");
                 leftIndex = i;
               }
               if (unitArr[i-1] == "-") {
@@ -416,14 +415,18 @@ const compute = () => {
 
           console.log("leftArr, rightArr:", newLeftArr, newRightArr);
 
-          if (typeof result == "string") {
-            unitArr = newLeftArr.concat([`${result}`]).concat(newRightArr);
+          if (unitIndex == 0) {
+            unitArr = unitArr;
           } else {
-            unitArr = newLeftArr.concat(result).concat(newRightArr);
-          }
+            if (typeof result == "string") {
+              unitArr = newLeftArr.concat([`${result}`]).concat(newRightArr);
+            } else {
+              unitArr = newLeftArr.concat(result).concat(newRightArr);
+            }
 
-          console.log("new arr,", unitArr);
-        }
+            console.log("new arr,", unitArr);
+          }
+        } 
       }
     }
     // initial call
