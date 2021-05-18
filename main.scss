@@ -57,6 +57,7 @@ $radii: 10px;
     display: grid;
     grid-template-rows: 1fr 3fr;
     margin-bottom: 6px;
+    overflow: hidden;
 
     &__ansView {
       font-size: 11px;

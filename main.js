@@ -28,6 +28,7 @@ const zero_clear = (clr=false) => {
 }
 
 const start_op = () => {
+  view.scrollLeft = 9999;
   newOp = false;
 }
 
@@ -491,6 +492,7 @@ const delete_input = () => {
   if (view.value == "") {
     view.value = "0";
   }
+  view.scrollLeft = 9999;
 }
 
 const ans_up = () => {
@@ -504,6 +506,7 @@ const ans_up = () => {
   if (ansView.value.length > 32) {
     ansView.value = ansView.value.slice(0,32) + "...";
   }  
+  view.scrollLeft = 9999;
 }
 
 const ans_down = () => {
@@ -517,6 +520,7 @@ const ans_down = () => {
   if (ansView.value.length > 32) {
     ansView.value = ansView.value.slice(0,32) + "...";
   }
+  view.scrollLeft = 9999;
 }
 
 const insert_ans = () => {
@@ -526,7 +530,7 @@ const insert_ans = () => {
     view.value += ans[ansIndex];
     start_op()
   }
-
+  view.scrollLeft = 9999;
 }
 
 const bracket_left = () => {
@@ -611,6 +615,7 @@ const op_mult = () => {
       newOp = true;
     }
   }
+  view.scrollLeft = 9999;
 }
 const op_divi = () => {
   if (view.value != "0") {
@@ -623,6 +628,7 @@ const op_divi = () => {
       newOp = true;
     }
   }
+  view.scrollLeft = 9999;
 }
 const op_add = () => {
   if (view.value != "0") {
@@ -635,6 +641,7 @@ const op_add = () => {
       newOp = true;
     }
   }
+  view.scrollLeft = 9999;
 }
 const op_subt = () => {
   if (view.value == "0") {
@@ -652,7 +659,7 @@ const op_subt = () => {
       newOp = true;
     }
   }
-  
+  view.scrollLeft = 9999;
 }
 
 

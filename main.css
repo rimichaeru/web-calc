@@ -53,6 +53,7 @@ body {
   display: grid;
   grid-template-rows: 1fr 3fr;
   margin-bottom: 6px;
+  overflow: hidden;
 }
 .calc__display__ansView {
   font-size: 11px;
