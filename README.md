@@ -1,6 +1,6 @@
 # web-calc
 
-A web-based calculator using JS and HTML, has all the core featuers of a standard calculator. The grid and code design enable it to be easily upgraded into a fully-fledged scientific calculator! Fixed in the top-left corner, ready for easy export.
+A web-based calculator using JS and HTML without using the automatic eval() compute function, has all the core featuers of a standard calculator. The grid and code design enable it to be easily upgraded into a fully-fledged scientific calculator! Fixed in the top-left corner, ready for easy export.
 
 Enjoy your computations with the relaxing theme; baby blue bubbles!
 
