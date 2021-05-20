@@ -474,7 +474,7 @@ const compute = () => {
 
     // truncate if too long
     if (ansView.value.length > 32) {
-      ansView.value = ansView.value.slice(0,32) + "...";
+      ansView.value = ansView.value.slice(0,46) + "...";
     }
     view.value = answer;
     ans.push(answer);
