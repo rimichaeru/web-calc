@@ -151,90 +151,6 @@ const compute = () => {
         }
       }
 
-      // for (unit of unitArr) {
-      //   // test for only numbers
-      //   if (/^[\d.]+$/.test(unitArr.join(""))) {
-      //     return unitArr;
-      //   } else {
-      //     // checks for a minus number
-      //     if (/^-/.test(unitArr.join("")) && /^[\d.]+$/.test(unitArr.join("").slice(1))) {
-      //       return unitArr;
-      //     }
-      //   }
-
-      //   if (unit == "+") {
-      //     const unitIndex = unitArr.indexOf(unit);
-      //     let isMinus = 0;
-
-      //     // get start index of immediate left number only
-      //     let leftNum = [];
-      //     let leftIndex;
-      //     for (let i = unitIndex-1; i >= 0; i--) {
-      //       console.log("unitIndex:", unitIndex);
-      //       if (/[\d.()]/.test(unitArr[i])) {
-      //         leftNum.unshift(unitArr[i])
-      //         if (i == 0) {
-      //           console.log("going i==0");
-      //           leftIndex = i;
-      //         }
-      //         if (unitArr[i-1] == "-") {
-      //           console.log("going minus");
-      //           leftNum.unshift("-");
-      //           isMinus = i-2;
-      //           leftIndex = i;
-      //         }
-      //       } else {
-      //         console.log("going else");
-      //         leftIndex = i+1;
-      //         break;
-      //       }
-      //     }
-      //     // get end index of immediate right number only
-      //     let rightNum = [];
-      //     let rightIndex;
-      //     for (let i = unitIndex+1; i < unitArr.length; i++) {
-      //       if (/[\d.()]/.test(unitArr[i])) {
-      //         rightNum.push(unitArr[i])
-      //         if (i == unitArr.length-1) {
-      //           rightIndex = i+1;
-      //         }
-      //       } else {
-      //         rightIndex = i;
-      //         break;
-      //       }
-      //     }
-
-      //     console.log("left, right nums,", leftNum, rightNum);
-      //     console.log("left, right index,", leftIndex, rightIndex);
-
-      //     // attempt to operate on left and right
-      //     let result = Number(leftNum.join("")) + Number(rightNum.join(""));
-
-      //     result = `${result}`;
-      //     if (result[0] == "-") {
-      //       result = result.split("");
-      //       if (result[0] == "-" && result[1] == "-") {
-      //         result = result.slice(1);
-      //       }
-      //     }
-      //     console.log("result: ", result);
-
-      //     // now replace calculated part of array and join to original array
-      //     newLeftArr = unitArr.slice(isMinus, leftIndex);
-      //     newRightArr = unitArr.slice(rightIndex);
-
-      //     console.log("leftArr, rightArr:", newLeftArr, newRightArr);
-
-      //     if (typeof result == "string") {
-      //       unitArr = newLeftArr.concat([`${result}`]).concat(newRightArr);
-      //     } else {
-      //       unitArr = newLeftArr.concat(result).concat(newRightArr);
-      //     }
-
-      //     console.log("new arr,", unitArr);
-      //   }
-      // }
-
       for (unit of unitArr) {
         // final returns standalone number
         if (/^[\d.]+$/.test(unitArr.join(""))) {
@@ -713,7 +629,9 @@ calc.addEventListener("keydown", (event) => {
     case "Subtract":
       op_subt();
       break;
-
+    case "Enter":
+      compute();
+      break;
     default:
       break;
   }
