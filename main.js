@@ -395,6 +395,7 @@ const compute = () => {
     view.value = answer;
     ans.push(answer);
     ansIndex += 1;
+    ansIndex = ans.length - 1;
     newOp = true;
     
   } catch (error) {
