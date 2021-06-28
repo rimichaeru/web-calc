@@ -1,5 +1,7 @@
 # web-calc
 
+Live version: https://rimichaeru.github.io/web-calc/
+
 A web-based calculator using JS and HTML **without** using the automatic eval() compute function, has all the core featuers of a standard calculator. 
 End-to-End tested with Cypress.
 The grid and code design enable it to be easily upgraded into a fully-fledged scientific calculator! Fixed in the top-left corner, ready for easy export.
